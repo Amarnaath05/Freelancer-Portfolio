@@ -1,24 +1,11 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Box } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
+import { caseStudiesConfig } from "@/config/caseStudiesConfig";
 
 export default function CaseStudies() {
-  const cases = [
-    {
-      id: "01",
-      title: "Freelance Marketplace",
-      category: "Platform Development",
-      description: "Building a scalable MERN stack platform for freelancers with secure payment integration and real-time chat.",
-      metrics: ["Real-time Chat", "Role-Based Access", "Secure Payments"]
-    },
-    {
-      id: "02",
-      title: "Marketing Crew AI",
-      category: "Business Automation",
-      description: "Developing a system of autonomous AI agents to handle SEO, content creation, and social media posting.",
-      metrics: ["AI Agents", "SEO Automation", "24/7 Operation"]
-    }
-  ];
+  const cases = caseStudiesConfig;
 
   return (
     <section id="case-studies" className="py-24 relative overflow-hidden">
@@ -41,7 +28,7 @@ export default function CaseStudies() {
         <div className="space-y-12">
           {cases.map((study, index) => (
             <motion.div
-              key={study.title}
+              key={study.slug}
               initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -59,21 +46,23 @@ export default function CaseStudies() {
                   </div>
                   <h3 className="text-3xl font-bold text-white mb-4">{study.title}</h3>
                   <p className="text-gray-400 text-lg mb-8 leading-relaxed">
-                    {study.description}
+                    {study.shortDescription}
                   </p>
                   
                   <div className="flex flex-wrap gap-3 mb-8">
-                    {study.metrics.map(metric => (
-                      <div key={metric} className="flex items-center gap-2 text-gray-300">
+                    {study.tags.map(tag => (
+                      <div key={tag} className="flex items-center gap-2 text-gray-300">
                         <div className="w-1.5 h-1.5 rounded-full bg-secondary" />
-                        {metric}
+                        {tag}
                       </div>
                     ))}
                   </div>
 
-                  <Button variant="link" className="text-white p-0 hover:text-primary transition-colors text-lg h-auto">
-                    Read Full Case Study <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
+                  <Link href={`/case-studies/${study.slug}`}>
+                    <Button variant="link" className="text-white p-0 hover:text-primary transition-colors text-lg h-auto">
+                      Read Full Case Study <ArrowRight className="ml-2 w-5 h-5" />
+                    </Button>
+                  </Link>
                 </div>
                 
                 {/* Visual Representation */}

@@ -7,24 +7,57 @@ import { Button } from "@/components/ui/button";
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("");
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 50);
   });
 
+  // Update active section based on scroll position
+  useEffect(() => {
+    const sections = ["services", "case-studies", "experimental-lab", "skills", "process", "contact"];
+    
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + 100;
+      
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { offsetTop, offsetHeight } = element;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Initial call
+    
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const navLinks = [
     { name: "Services", href: "#services" },
-    { name: "Projects", href: "#projects" },
     { name: "Case Studies", href: "#case-studies" },
+    { name: "Experimental Lab", href: "#experimental-lab" },
     { name: "Skills", href: "#skills" },
     { name: "Process", href: "#process" },
   ];
 
   const scrollToSection = (id: string) => {
-    const element = document.querySelector(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    // Check if we're on the home page
+    if (window.location.pathname === '/') {
+      const element = document.querySelector(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+        setMobileMenuOpen(false);
+      }
+    } else {
+      // Navigate to home page with hash
+      window.location.href = `/${id}`;
       setMobileMenuOpen(false);
     }
   };
@@ -54,7 +87,11 @@ export default function Navbar() {
             <button
               key={link.name}
               onClick={() => scrollToSection(link.href)}
-              className="text-sm font-medium text-gray-300 hover:text-primary transition-colors uppercase tracking-wider"
+              className={`text-sm font-medium transition-colors uppercase tracking-wider ${
+                activeSection === link.href.substring(1) 
+                  ? "text-primary" 
+                  : "text-gray-300 hover:text-primary"
+              }`}
             >
               {link.name}
             </button>
@@ -87,7 +124,11 @@ export default function Navbar() {
               <button
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
-                className="text-left text-lg font-medium text-gray-300 hover:text-primary"
+                className={`text-left text-lg font-medium transition-colors ${
+                  activeSection === link.href.substring(1) 
+                    ? "text-primary" 
+                    : "text-gray-300 hover:text-primary"
+                }`}
               >
                 {link.name}
               </button>

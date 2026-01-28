@@ -2,6 +2,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { ExternalLink, Github, ArrowUpRight, User, Briefcase } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 import React from "react";
 
 // Project Images
@@ -21,6 +22,7 @@ interface Project {
   clientName?: string;
   clientType?: string;
   myRole?: string;
+  caseStudySlug?: string;
 }
 
 const ProjectCard = ({ project, isClient = false }: { project: Project; isClient?: boolean }) => {
@@ -48,6 +50,19 @@ const ProjectCard = ({ project, isClient = false }: { project: Project; isClient
   const handleMouseLeave = () => {
     x.set(0);
     y.set(0);
+  };
+
+  const handleProjectClick = (title: string, isClient = false, caseStudySlug?: string) => {
+    if (isClient && caseStudySlug) {
+      // For client projects, navigate to the case study page
+      window.location.href = `/case-studies/${caseStudySlug}`;
+    } else if (!isClient) {
+      // For personal projects, scroll to experimental lab section
+      const experimentalLab = document.getElementById("experimental-lab");
+      if (experimentalLab) {
+        experimentalLab.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   return (
@@ -115,9 +130,20 @@ const ProjectCard = ({ project, isClient = false }: { project: Project; isClient
           </div>
 
           <div className="flex items-center justify-between">
-            <button className="text-sm font-medium text-white flex items-center gap-1 hover:text-primary transition-colors">
-              {isClient ? "View Case Study" : "View Details"} <ArrowUpRight className="w-4 h-4" />
-            </button>
+            {isClient && project.caseStudySlug ? (
+              <Link href={`/case-studies/${project.caseStudySlug}`}>
+                <button className="text-sm font-medium text-white flex items-center gap-1 hover:text-primary transition-colors">
+                  View Case Study <ArrowUpRight className="w-4 h-4" />
+                </button>
+              </Link>
+            ) : (
+              <button 
+                onClick={() => handleProjectClick(project.title, isClient, project.caseStudySlug)}
+                className="text-sm font-medium text-white flex items-center gap-1 hover:text-primary transition-colors"
+              >
+                {isClient ? "View Case Study" : "View Details"} <ArrowUpRight className="w-4 h-4" />
+              </button>
+            )}
           </div>
         </div>
       </motion.div>
@@ -135,7 +161,8 @@ export const ClientProjectsSection = () => {
       description: "Company website design & development with custom software tools and performance optimization.",
       myRole: "Full-Stack Developer",
       stack: ["React", "JavaScript", "Node.js", "REST APIs"],
-      image: imgEcommerce
+      image: imgEcommerce,
+      caseStudySlug: "freelance-marketplace"
     },
     {
       title: "Personal Brand Automation",
@@ -145,7 +172,8 @@ export const ClientProjectsSection = () => {
       description: "AI automation for LinkedIn content scheduling and business workflow optimization.",
       myRole: "AI Automation Engineer",
       stack: ["n8n", "OpenAI", "APIs", "Cloud Hosting"],
-      image: imgMarketing
+      image: imgMarketing,
+      caseStudySlug: "marketing-crew-ai"
     },
     {
       title: "Finance Insight Pro",
@@ -155,7 +183,8 @@ export const ClientProjectsSection = () => {
       description: "AI-powered personal finance assistant with expense prediction and smart budget recommendations.",
       myRole: "AI Engineer",
       stack: ["Python", "React", "Scikit-Learn", "AWS"],
-      image: imgFinance
+      image: imgFinance,
+      caseStudySlug: "finance-insight-pro"
     }
   ];
 
@@ -219,7 +248,7 @@ export const PersonalProjectsSection = () => {
   ];
 
   return (
-    <section id="personal-projects" className="py-24 relative overflow-hidden">
+    <section id="experimental-lab" className="py-24 relative overflow-hidden">
       <div className="container mx-auto px-6">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
