@@ -44,7 +44,7 @@ export default function Navbar() {
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         >
           <span className="text-primary">&lt;</span>
-          <span className="text-white">Amar</span>
+          <span className="text-white">Amarnaath</span>
           <span className="text-primary">/&gt;</span>
         </div>
 

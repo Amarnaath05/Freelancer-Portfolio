@@ -55,7 +55,7 @@ export default function Hero() {
           </motion.div>
 
           <h1 className="text-5xl md:text-7xl font-bold font-heading leading-tight mb-6">
-            Hi, I'm <span className="text-white">Amar</span>
+            Hi, I'm <span className="text-white">Amarnaath</span>
             <br />
             <span className="gradient-text">Full-Stack Dev</span> &
             <br />

@@ -11,7 +11,7 @@ export default function Footer() {
           <div className="col-span-1 md:col-span-2">
             <div className="text-2xl font-bold font-heading mb-4 flex items-center gap-2">
               <span className="text-primary">&lt;</span>
-              <span className="text-white">Amar</span>
+              <span className="text-white">Amarnaath</span>
               <span className="text-primary">/&gt;</span>
             </div>
             <p className="text-gray-400 max-w-sm mb-6">

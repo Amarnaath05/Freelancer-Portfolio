@@ -1,0 +1,110 @@
+I have a React portfolio website with a dark, modern UI and Framer Motion already set up.
+
+I want to RESTRUCTURE the existing Projects section into TWO clear sections:
+
+1) Client Projects
+2) Personal / Advanced Projects
+
+====================
+STRUCTURE REQUIREMENTS
+====================
+
+SECTION 1: Client Projects
+- Show projects completed for real clients
+- Each project card must display:
+  • Client name
+  • Client type (Startup / Founder / Business / Personal Brand)
+  • Project name
+  • Short 1–2 line description
+  • My role (e.g., Full-Stack Developer, AI Automation Engineer)
+  • Tech stack as tags
+  • Optional badge: “Client Project”
+  • Optional link to testimonial or case study
+- Maintain the existing dark UI theme and card layout
+- Visually emphasize trust, credibility, and professionalism
+
+SECTION 2: Personal / Advanced Projects
+- Show self-initiated or experimental projects
+- Each project card must display:
+  • Project name
+  • Short description
+  • Project type (Full-Stack / AI / Automation / Cloud)
+  • Tech stack tags
+- Do NOT show any client information in this section
+
+====================
+TECHNICAL REQUIREMENTS
+====================
+
+• Separate project data into two arrays:
+  - clientProjects[]
+  - personalProjects[]
+
+• Create reusable React components:
+  - <ProjectCard />
+  - <ClientProjectsSection />
+  - <PersonalProjectsSection />
+
+• Use functional React components
+• Keep layout responsive
+• Keep styling consistent with the existing design
+• Do NOT break existing navigation, routes, or theme
+• Keep code clean, modular, and scalable
+
+====================
+UX ORDER (IMPORTANT)
+====================
+
+Hero
+Services
+Client Projects
+Testimonials
+Personal / Advanced Projects
+Skills
+Process
+CTA (Hire Me)
+
+====================
+FRAMER MOTION ENHANCEMENTS
+====================
+
+Add subtle, premium Framer Motion animations:
+
+• Fade + slide animation when sections enter the viewport
+• Smooth staggered animations for project cards
+• Slight scale-up on hover
+• Gentle pseudo-3D tilt effect on project cards using CSS perspective
+
+Example behavior (do not hardcode values everywhere):
+- rotateX and rotateY on hover
+- scale slightly on hover
+- perspective applied at the card container level
+
+Animations must be:
+• Subtle and professional
+• Performance-friendly
+• Not distracting
+• Fully responsive and mobile-safe
+
+====================
+OPTIONAL VISUAL POLISH
+====================
+
+You may add:
+• Depth hover glow using box-shadow
+• Soft floating abstract background elements (SVGs or gradients only)
+• Very slow motion drift for background visuals
+
+Do NOT add:
+• Heavy 3D libraries
+• Three.js scenes
+• Particle systems
+• Over-animated effects
+
+====================
+DELIVERY
+====================
+
+Implement this change fully in React.
+Preserve the existing UI look and feel.
+Focus on clarity, professionalism, and portfolio best practices.
