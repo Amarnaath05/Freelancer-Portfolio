@@ -7,7 +7,7 @@ export default function Skills() {
     {
       title: "Frontend Development",
       icon: <Code2 className="w-6 h-6 text-primary" />,
-      skills: ["React", "Vite", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "Bootstrap", "HTML5/CSS3", "Figma"]
+      skills: ["React", "Vite", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js", "Bootstrap", "HTML5/CSS3", "Figma", "SEO"]
     },
     {
       title: "Backend Systems",

@@ -4,16 +4,22 @@ import { Quote } from "lucide-react";
 export default function Clients() {
   const clients = [
     {
-      name: "Siva Sakthi",
-      role: "Founder & CEO, VoltAura",
+      name: "Verified Client",
+      role: "Product Founder · India",
       content: "Amar delivered a professional website and custom tools tailored to our business needs. His ability to translate requirements into technical solutions is outstanding.",
-      tags: ["Web Dev", "Custom Tools"]
+      tags: ["Frontend", "Backend", "Real-Time Systems", "Cloud Integration", "Supabase"]
     },
     {
-      name: "Kalaiarasan",
-      role: "Personal Brand / Business",
+      name: "Verified Client",
+      role: "Business Owner · India",
       content: "Automation saved time and improved consistency in content publishing. The AI workflows implemented have completely transformed how I manage my social media presence.",
-      tags: ["AI Automation", "n8n"]
+      tags: ["AI Automation", "n8n", "Web Scraping", "Workflow Design"]
+    },
+    {
+      name: "Verified Client",
+      role: "Startup Founder · India",
+      content: "Working with Amar was smooth from start to finish. He understood our problem clearly and delivered a scalable solution using modern web and AI tools. Communication, speed, and quality were top-notch.",
+      tags: ["Web App", "AI Integration", "Automation", "SEO"]
     }
   ];
 
@@ -34,7 +40,7 @@ export default function Clients() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {clients.map((client, index) => (
             <motion.div
               key={client.name}
@@ -57,12 +63,16 @@ export default function Clients() {
                 <div>
                   <h4 className="font-bold text-white">{client.name}</h4>
                   <p className="text-primary text-sm">{client.role}</p>
+                  <p className="text-gray-500 text-xs mt-1">🔒 Client details masked due to NDA</p>
                 </div>
               </div>
 
-              <div className="mt-6 flex gap-2">
+              <div className="mt-6 flex flex-wrap gap-2">
                 {client.tags.map(tag => (
-                  <span key={tag} className="text-xs text-gray-500 bg-white/5 px-2 py-1 rounded">
+                  <span 
+                    key={tag} 
+                    className="inline-flex items-center px-3 py-1.5 text-xs text-gray-400 bg-white/5 border border-white/10 rounded-full backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/20"
+                  >
                     {tag}
                   </span>
                 ))}
