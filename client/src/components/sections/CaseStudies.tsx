@@ -66,8 +66,28 @@ export default function CaseStudies() {
                 </div>
                 
                 {/* Visual Representation */}
-                <div className="h-64 md:h-80 bg-gradient-to-br from-white/5 to-white/[0.02] rounded-2xl border border-white/5 flex items-center justify-center">
-                  <span className="text-gray-600 font-mono text-sm">Project Visual / Architecture Diagram</span>
+                <div className="h-64 md:h-80 bg-gradient-to-br from-white/5 to-white/[0.02] rounded-2xl border border-white/5 flex items-center justify-center overflow-hidden">
+                  {study.slug === 'freelance-marketplace' && (
+                    <img 
+                      src="/src/assets/arch-marketplace.png" 
+                      alt="MERN Stack Architecture - Freelance Marketplace"
+                      className="w-full h-full object-cover rounded-2xl"
+                    />
+                  )}
+                  {study.slug === 'marketing-crew-ai' && (
+                    <img 
+                      src="/src/assets/arch-ai-lab.png" 
+                      alt="AI Agent System Architecture - Marketing Crew AI"
+                      className="w-full h-full object-cover rounded-2xl"
+                    />
+                  )}
+                  {study.slug === 'finance-insight-pro' && (
+                    <img 
+                      src="/src/assets/arch-finance (1).png" 
+                      alt="Finance Analytics Dashboard - Finance Insight Pro"
+                      className="w-full h-full object-cover rounded-2xl"
+                    />
+                  )}
                 </div>
               </div>
             </motion.div>
