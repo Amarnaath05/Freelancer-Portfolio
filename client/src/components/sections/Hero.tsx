@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import HeroScene from "../3d/HeroScene";
 import { ArrowRight, Download, Linkedin, Github, Mail } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
+import heroOrb from "@/assets/hero-orb.png";
 
 function Fallback() {
   return <div className="w-full h-full" />;
@@ -20,7 +21,7 @@ export default function Hero() {
       <div className="absolute top-0 right-0 w-full h-full md:w-1/2 opacity-30 md:opacity-100 z-0 pointer-events-none">
          {/* Fallback Image if 3D fails or loads late */}
          <img 
-            src="/hero-orb.png" 
+            src={heroOrb} 
             alt="Hero Background" 
             className="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-screen"
          />

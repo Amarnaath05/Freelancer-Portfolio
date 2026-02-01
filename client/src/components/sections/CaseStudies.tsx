@@ -3,9 +3,9 @@ import { ArrowRight, Box } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { caseStudiesConfig } from "@/config/caseStudiesConfig";
-import archMarketplace from "../assets/arch-marketplace.png";
-import archFinance from "../assets/arch-finance.png";
-import archAiLab from "../assets/arch-ai-lab.png";
+import archMarketplace from "@/assets/arch-marketplace.png";
+import archFinance from "@/assets/arch-finance.png";
+import archAiLab from "@/assets/arch-ai-lab.png";
 
 export default function CaseStudies() {
   const cases = caseStudiesConfig;
