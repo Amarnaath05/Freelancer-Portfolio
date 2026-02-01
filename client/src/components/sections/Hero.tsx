@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { motion } from "framer-motion";
 import { Canvas } from "@react-three/fiber";
 import { Button } from "@/components/ui/button";
-import HeroScene from "../3d/HeroScene";
+import HeroScene from "@/components/3d/HeroScene";
 import { ArrowRight, Download, Linkedin, Github, Mail } from "lucide-react";
 import { ErrorBoundary } from "react-error-boundary";
 import heroOrb from "@/assets/hero-orb.png";
