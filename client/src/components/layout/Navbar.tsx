@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "wouter";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -16,7 +15,7 @@ export default function Navbar() {
 
   // Update active section based on scroll position
   useEffect(() => {
-    const sections = ["services", "case-studies", "experimental-lab", "skills", "process", "contact"];
+    const sections = ["quick-links", "projects", "case-studies", "about", "contact"];
     
     const handleScroll = () => {
       const scrollPosition = window.scrollY + 100;
@@ -40,24 +39,32 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Services", href: "#services" },
+    { name: "Quick Links", href: "#quick-links" },
+    { name: "Projects", href: "#projects" },
     { name: "Case Studies", href: "#case-studies" },
-    { name: "Experimental Lab", href: "#experimental-lab" },
-    { name: "Skills", href: "#skills" },
-    { name: "Process", href: "#process" },
+    { name: "About Me", href: "#about" },
+    { name: "Contact", href: "#contact" },
+    { name: "Privacy Policy", href: "/privacy-policy" },
   ];
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (href: string) => {
+    // Handle Privacy Policy as a separate page
+    if (href === "/privacy-policy") {
+      window.location.href = href;
+      setMobileMenuOpen(false);
+      return;
+    }
+    
     // Check if we're on the home page
     if (window.location.pathname === '/') {
-      const element = document.querySelector(id);
+      const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
         setMobileMenuOpen(false);
       }
     } else {
       // Navigate to home page with hash
-      window.location.href = `/${id}`;
+      window.location.href = `/${href}`;
       setMobileMenuOpen(false);
     }
   };
@@ -88,7 +95,7 @@ export default function Navbar() {
               key={link.name}
               onClick={() => scrollToSection(link.href)}
               className={`text-sm font-medium transition-colors uppercase tracking-wider ${
-                activeSection === link.href.substring(1) 
+                activeSection === link.href.substring(1) || (link.href.startsWith('/') && window.location.pathname === link.href)
                   ? "text-primary" 
                   : "text-gray-300 hover:text-primary"
               }`}
@@ -125,7 +132,7 @@ export default function Navbar() {
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
                 className={`text-left text-lg font-medium transition-colors ${
-                  activeSection === link.href.substring(1) 
+                  activeSection === link.href.substring(1) || (link.href.startsWith('/') && window.location.pathname === link.href)
                     ? "text-primary" 
                     : "text-gray-300 hover:text-primary"
                 }`}
